@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WpfRent.Models;
 
 namespace WpfRent
 {
@@ -13,5 +14,8 @@ namespace WpfRent
     /// </summary>
     public partial class App : Application
     {
+       public static RentGavrilinEntities context = new RentGavrilinEntities();
+        public static Users enteredUser;
+        public static Announcement filtrAnnouncement;
     }
 }

@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfRent"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="360">
+        Title="MainWindow" Background="Black" Height="800" Width="360">
     <Grid>
-        
+        <Frame x:Name="MainFrm"
+        Grid.Row="0"
+        NavigationUIVisibility="Hidden"  />
     </Grid>
 </Window>
