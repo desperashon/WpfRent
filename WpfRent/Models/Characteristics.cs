@@ -16,12 +16,12 @@ namespace WpfRent.Models
     {
         public Characteristics()
         {
-            this.Announcement_Characteristis = new HashSet<Announcement_Characteristis>();
+            this.Announcement = new HashSet<Announcement>();
         }
     
         public int characteristic_id { get; set; }
         public string name { get; set; }
     
-        public virtual ICollection<Announcement_Characteristis> Announcement_Characteristis { get; set; }
+        public virtual ICollection<Announcement> Announcement { get; set; }
     }
 }

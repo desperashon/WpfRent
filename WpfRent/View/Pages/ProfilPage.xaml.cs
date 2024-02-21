@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfRent.Models;
 
 namespace WpfRent.View.Pages
 {
@@ -35,7 +36,9 @@ namespace WpfRent.View.Pages
                 PatronymicTb.Text = user.middle_name ?? "";
                 EmailTb.Text = user.email ?? "";
                 PasswordPb.Password = user.password ?? "";
-                LocationTb.Text = user.location ?? "";
+                LocationTb.Text = user.Location1.name ?? "";
+
+
 
 
             }
@@ -56,8 +59,7 @@ namespace WpfRent.View.Pages
                     userToUpdate.middle_name = PatronymicTb.Text;
                     userToUpdate.email = EmailTb.Text;
                     userToUpdate.password = PasswordPb.Password;
-                    userToUpdate.location = LocationTb.Text;
-
+                    userToUpdate.Location1.name = LocationTb.Text;
                     // Сохраняем изменения в базе данных
                     App.context.SaveChanges();
 

@@ -68,23 +68,23 @@ namespace WpfRent.View.Pages
 
 
             // Получение характеристик для выбранного объявления
-            var characteristics = from ac in App.context.Announcement_Characteristis
-                                  join c in App.context.Characteristics on ac.characteristic_id equals c.characteristic_id
-                                  where ac.announcement_id == selectedAnnouncement.announcement_id
-                                  select c;
+            //var characteristics = from ac in App.context.Announcement_Characteristis
+            //                      join c in App.context.Characteristics on ac.characteristic_id equals c.characteristic_id
+            //                      where ac.announcement_id == selectedAnnouncement.announcement_id
+            //                      select c;
 
             // Формирование строки характеристик
             StringBuilder characteristicsBuilder = new StringBuilder();
-            foreach (var characteristic in characteristics)
-            {
-                characteristicsBuilder.AppendLine(characteristic.name);
-            }
+            //foreach (var characteristic in characteristics)
+            //{
+            //    characteristicsBuilder.AppendLine(characteristic.name);
+            //}
 
             // Установка характеристик в TextBox
             CharacteristicsTb.Text = characteristicsBuilder.ToString();
 
             NameTb.Text = $" Название: {selectedAnnouncement.title}";
-            LocationTb.Text = $" Местоположение: {selectedAnnouncement.location}";
+            LocationTb.Text = $" Местоположение: {selectedAnnouncement.Location1.name}";
             DescriptionTb.Text = $" Описание: {selectedAnnouncement.description}";
            
                

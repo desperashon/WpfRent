@@ -25,13 +25,12 @@ namespace WpfRent.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Announcement> Announcement { get; set; }
-        public DbSet<Announcement_Characteristis> Announcement_Characteristis { get; set; }
         public DbSet<Characteristics> Characteristics { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<Realtor> Realtor { get; set; }
         public DbSet<Responses> Responses { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Announcement> Announcement { get; set; }
     }
 }

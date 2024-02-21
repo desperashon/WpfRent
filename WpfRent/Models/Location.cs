@@ -12,13 +12,18 @@ namespace WpfRent.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Announcement_Characteristis
+    public partial class Location
     {
-        public int announcement_characteristis_id { get; set; }
-        public Nullable<int> announcement_id { get; set; }
-        public Nullable<int> characteristic_id { get; set; }
+        public Location()
+        {
+            this.Users = new HashSet<Users>();
+            this.Announcement = new HashSet<Announcement>();
+        }
     
-        public virtual Announcement Announcement { get; set; }
-        public virtual Characteristics Characteristics { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+    
+        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<Announcement> Announcement { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace WpfRent.Models
     {
         public Announcement()
         {
-            this.Announcement_Characteristis = new HashSet<Announcement_Characteristis>();
             this.Responses = new HashSet<Responses>();
         }
     
@@ -28,9 +27,11 @@ namespace WpfRent.Models
         public string description { get; set; }
         public Nullable<int> realtor_id { get; set; }
         public Nullable<decimal> price { get; set; }
+        public Nullable<bool> otoplinie { get; set; }
+        public Nullable<bool> parkovka { get; set; }
     
         public virtual Realtor Realtor { get; set; }
-        public virtual ICollection<Announcement_Characteristis> Announcement_Characteristis { get; set; }
+        public virtual Characteristics Characteristics { get; set; }
         public virtual Location Location1 { get; set; }
         public virtual ICollection<Responses> Responses { get; set; }
     }

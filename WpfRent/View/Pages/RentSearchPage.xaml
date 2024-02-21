@@ -38,10 +38,9 @@
             <Label Content="Поиск:"/>
             <TextBox TextChanged="SearchTb_TextChanged" 
                         Name="SearchTb" Width="201" Height="36"/>
-            <Button Name="FiltrBtn"
-  Width="153" Height="54" Click="FiltrBtn_Click"  BorderThickness="0">
+            <Button Name="FiltrBtn" Width="153" Height="54" Click="FiltrBtn_Click" BorderThickness="0">
                 <Button.Template>
-                    <ControlTemplate  TargetType="{x:Type Button}">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Background="Transparent" Margin="0,0,89,0">
                             <Ellipse Fill="Transparent"/>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -65,10 +64,9 @@
                             <Grid>
 
                                 <StackPanel Orientation="Vertical">
-                                    
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Расположение: " FontWeight="Medium"/>
-                                        <TextBlock Text="{Binding location}" FontWeight="Medium"/>
+                                        <TextBlock Text="{Binding Location1.name, Mode=OneWay}" FontWeight="Medium"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="Название: " FontWeight="Medium"/>

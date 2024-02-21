@@ -21,6 +21,7 @@ namespace WpfRent.View.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
+        public static Announcement filtrAnnouncement;
         public LoginPage()
         {
             InitializeComponent();
@@ -33,8 +34,10 @@ namespace WpfRent.View.Pages
 
             if (user != null)
             {
+
                 App.enteredUser = user;
                 NavigationService.Navigate(new RentSearchPage(user));
+
             }
             else
             {

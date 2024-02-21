@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfRent.Models;
 using WpfRent.View.Pages;
 
 namespace WpfRent
@@ -21,10 +22,14 @@ namespace WpfRent
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
             MainFrm.Navigate(new LoginPage());
+          
         }
+
+       
     }
 }

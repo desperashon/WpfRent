@@ -18,7 +18,7 @@ namespace WpfRent.Models
         public Nullable<int> user_id { get; set; }
         public Nullable<int> announcement_id { get; set; }
     
-        public virtual Announcement Announcement { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Announcement Announcement { get; set; }
     }
 }

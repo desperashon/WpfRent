@@ -22,12 +22,14 @@ namespace WpfRent.View.Pages
     /// </summary>
     public partial class RegisrtationPage : Page
     {
+
+
         public RegisrtationPage()
         {
             InitializeComponent();
         }
 
-
+        public static Announcement filtrAnnouncement;
 
         private void RegistretionBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -82,7 +84,7 @@ namespace WpfRent.View.Pages
             App.context.Users.Add(user);
             App.enteredUser = user;
             App.context.SaveChanges();
-
+            
             MessageBox.Show("Успешная регистрация!");
             NavigationService.Navigate(new RentSearchPage(user));
         }

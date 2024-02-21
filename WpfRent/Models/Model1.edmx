@@ -11,20 +11,14 @@
           </Key>
           <Property Name="announcement_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="photo" Type="nvarchar" MaxLength="255" />
-          <Property Name="title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="255" />
           <Property Name="location" Type="int" />
           <Property Name="characteristic_id" Type="int" />
           <Property Name="description" Type="text" />
           <Property Name="realtor_id" Type="int" />
           <Property Name="price" Type="money" />
-        </EntityType>
-        <EntityType Name="Announcement_Characteristis">
-          <Key>
-            <PropertyRef Name="announcement_characteristis_id" />
-          </Key>
-          <Property Name="announcement_characteristis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="announcement_id" Type="int" />
-          <Property Name="characteristic_id" Type="int" />
+          <Property Name="otoplinie" Type="bit" />
+          <Property Name="parkovka" Type="bit" />
         </EntityType>
         <EntityType Name="Characteristics">
           <Key>
@@ -92,26 +86,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Announcement_Characteristis_Announcement">
-          <End Role="Announcement" Type="Self.Announcement" Multiplicity="0..1" />
-          <End Role="Announcement_Characteristis" Type="Self.Announcement_Characteristis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Announcement">
-              <PropertyRef Name="announcement_id" />
-            </Principal>
-            <Dependent Role="Announcement_Characteristis">
-              <PropertyRef Name="announcement_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Announcement_Characteristis_Characteristics">
+        <Association Name="FK_Announcement_Characteristics">
           <End Role="Characteristics" Type="Self.Characteristics" Multiplicity="0..1" />
-          <End Role="Announcement_Characteristis" Type="Self.Announcement_Characteristis" Multiplicity="*" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Characteristics">
               <PropertyRef Name="characteristic_id" />
             </Principal>
-            <Dependent Role="Announcement_Characteristis">
+            <Dependent Role="Announcement">
               <PropertyRef Name="characteristic_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -166,7 +148,6 @@
         </Association>
         <EntityContainer Name="Хранилище RentGavrilinModelContainer">
           <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Announcement_Characteristis" EntityType="Self.Announcement_Characteristis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Characteristics" EntityType="Self.Characteristics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Realtor" EntityType="Self.Realtor" Schema="dbo" store:Type="Tables" />
@@ -177,13 +158,9 @@
             <End Role="Realtor" EntitySet="Realtor" />
             <End Role="Announcement" EntitySet="Announcement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Announcement_Characteristis_Announcement" Association="Self.FK_Announcement_Characteristis_Announcement">
-            <End Role="Announcement" EntitySet="Announcement" />
-            <End Role="Announcement_Characteristis" EntitySet="Announcement_Characteristis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Announcement_Characteristis_Characteristics" Association="Self.FK_Announcement_Characteristis_Characteristics">
+          <AssociationSet Name="FK_Announcement_Characteristics" Association="Self.FK_Announcement_Characteristics">
             <End Role="Characteristics" EntitySet="Characteristics" />
-            <End Role="Announcement_Characteristis" EntitySet="Announcement_Characteristis" />
+            <End Role="Announcement" EntitySet="Announcement" />
           </AssociationSet>
           <AssociationSet Name="FK_Announcement_Location" Association="Self.FK_Announcement_Location">
             <End Role="Location" EntitySet="Location" />
@@ -207,21 +184,28 @@
     <edmx:ConceptualModels>
       <Schema Namespace="RentGavrilinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RentGavrilinEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Announcement" EntityType="RentGavrilinModel.Announcement" />
-          <EntitySet Name="Announcement_Characteristis" EntityType="RentGavrilinModel.Announcement_Characteristis" />
           <EntitySet Name="Characteristics" EntityType="RentGavrilinModel.Characteristics" />
           <EntitySet Name="Location" EntityType="RentGavrilinModel.Location" />
           <EntitySet Name="Realtor" EntityType="RentGavrilinModel.Realtor" />
           <EntitySet Name="Responses" EntityType="RentGavrilinModel.Responses" />
           <EntitySet Name="sysdiagrams" EntityType="RentGavrilinModel.sysdiagrams" />
           <EntitySet Name="Users" EntityType="RentGavrilinModel.Users" />
+          <AssociationSet Name="FK_Users_Location" Association="RentGavrilinModel.FK_Users_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Responses_Users" Association="RentGavrilinModel.FK_Responses_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Responses" EntitySet="Responses" />
+          </AssociationSet>
+          <EntitySet Name="Announcement" EntityType="RentGavrilinModel.Announcement" />
           <AssociationSet Name="FK__Announcem__realt__4BAC3F29" Association="RentGavrilinModel.FK__Announcem__realt__4BAC3F29">
             <End Role="Realtor" EntitySet="Realtor" />
             <End Role="Announcement" EntitySet="Announcement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Announcement_Characteristis_Announcement" Association="RentGavrilinModel.FK_Announcement_Characteristis_Announcement">
+          <AssociationSet Name="FK_Announcement_Characteristics" Association="RentGavrilinModel.FK_Announcement_Characteristics">
+            <End Role="Characteristics" EntitySet="Characteristics" />
             <End Role="Announcement" EntitySet="Announcement" />
-            <End Role="Announcement_Characteristis" EntitySet="Announcement_Characteristis" />
           </AssociationSet>
           <AssociationSet Name="FK_Announcement_Location" Association="RentGavrilinModel.FK_Announcement_Location">
             <End Role="Location" EntitySet="Location" />
@@ -231,53 +215,14 @@
             <End Role="Announcement" EntitySet="Announcement" />
             <End Role="Responses" EntitySet="Responses" />
           </AssociationSet>
-          <AssociationSet Name="FK_Announcement_Characteristis_Characteristics" Association="RentGavrilinModel.FK_Announcement_Characteristis_Characteristics">
-            <End Role="Characteristics" EntitySet="Characteristics" />
-            <End Role="Announcement_Characteristis" EntitySet="Announcement_Characteristis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Location" Association="RentGavrilinModel.FK_Users_Location">
-            <End Role="Location" EntitySet="Location" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Responses_Users" Association="RentGavrilinModel.FK_Responses_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Responses" EntitySet="Responses" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Announcement">
-          <Key>
-            <PropertyRef Name="announcement_id" />
-          </Key>
-          <Property Name="announcement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="location" Type="Int32" />
-          <Property Name="characteristic_id" Type="Int32" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="realtor_id" Type="Int32" />
-          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="Realtor" Relationship="RentGavrilinModel.FK__Announcem__realt__4BAC3F29" FromRole="Announcement" ToRole="Realtor" />
-          <NavigationProperty Name="Announcement_Characteristis" Relationship="RentGavrilinModel.FK_Announcement_Characteristis_Announcement" FromRole="Announcement" ToRole="Announcement_Characteristis" />
-          <NavigationProperty Name="Location1" Relationship="RentGavrilinModel.FK_Announcement_Location" FromRole="Announcement" ToRole="Location" />
-          <NavigationProperty Name="Responses" Relationship="RentGavrilinModel.FK_Responses_Announcement" FromRole="Announcement" ToRole="Responses" />
-        </EntityType>
-        <EntityType Name="Announcement_Characteristis">
-          <Key>
-            <PropertyRef Name="announcement_characteristis_id" />
-          </Key>
-          <Property Name="announcement_characteristis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="announcement_id" Type="Int32" />
-          <Property Name="characteristic_id" Type="Int32" />
-          <NavigationProperty Name="Announcement" Relationship="RentGavrilinModel.FK_Announcement_Characteristis_Announcement" FromRole="Announcement_Characteristis" ToRole="Announcement" />
-          <NavigationProperty Name="Characteristics" Relationship="RentGavrilinModel.FK_Announcement_Characteristis_Characteristics" FromRole="Announcement_Characteristis" ToRole="Characteristics" />
-        </EntityType>
         <EntityType Name="Characteristics">
           <Key>
             <PropertyRef Name="characteristic_id" />
           </Key>
           <Property Name="characteristic_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Announcement_Characteristis" Relationship="RentGavrilinModel.FK_Announcement_Characteristis_Characteristics" FromRole="Characteristics" ToRole="Announcement_Characteristis" />
+          <NavigationProperty Name="Announcement" Relationship="RentGavrilinModel.FK_Announcement_Characteristics" FromRole="Characteristics" ToRole="Announcement" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -285,8 +230,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Announcement" Relationship="RentGavrilinModel.FK_Announcement_Location" FromRole="Location" ToRole="Announcement" />
           <NavigationProperty Name="Users" Relationship="RentGavrilinModel.FK_Users_Location" FromRole="Location" ToRole="Users" />
+          <NavigationProperty Name="Announcement" Relationship="RentGavrilinModel.FK_Announcement_Location" FromRole="Location" ToRole="Announcement" />
         </EntityType>
         <EntityType Name="Realtor">
           <Key>
@@ -306,8 +251,8 @@
           <Property Name="responses_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" />
           <Property Name="announcement_id" Type="Int32" />
-          <NavigationProperty Name="Announcement" Relationship="RentGavrilinModel.FK_Responses_Announcement" FromRole="Responses" ToRole="Announcement" />
           <NavigationProperty Name="Users" Relationship="RentGavrilinModel.FK_Responses_Users" FromRole="Responses" ToRole="Users" />
+          <NavigationProperty Name="Announcement" Relationship="RentGavrilinModel.FK_Responses_Announcement" FromRole="Responses" ToRole="Announcement" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -333,6 +278,49 @@
           <NavigationProperty Name="Location1" Relationship="RentGavrilinModel.FK_Users_Location" FromRole="Users" ToRole="Location" />
           <NavigationProperty Name="Responses" Relationship="RentGavrilinModel.FK_Responses_Users" FromRole="Users" ToRole="Responses" />
         </EntityType>
+        <Association Name="FK_Users_Location">
+          <End Type="RentGavrilinModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="RentGavrilinModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Responses_Users">
+          <End Type="RentGavrilinModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="RentGavrilinModel.Responses" Role="Responses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Responses">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="announcement_id" />
+          </Key>
+          <Property Name="announcement_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="Int32" />
+          <Property Name="characteristic_id" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="realtor_id" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="otoplinie" Type="Boolean" />
+          <Property Name="parkovka" Type="Boolean" />
+          <NavigationProperty Name="Realtor" Relationship="RentGavrilinModel.FK__Announcem__realt__4BAC3F29" FromRole="Announcement" ToRole="Realtor" />
+          <NavigationProperty Name="Characteristics" Relationship="RentGavrilinModel.FK_Announcement_Characteristics" FromRole="Announcement" ToRole="Characteristics" />
+          <NavigationProperty Name="Location1" Relationship="RentGavrilinModel.FK_Announcement_Location" FromRole="Announcement" ToRole="Location" />
+          <NavigationProperty Name="Responses" Relationship="RentGavrilinModel.FK_Responses_Announcement" FromRole="Announcement" ToRole="Responses" />
+        </EntityType>
         <Association Name="FK__Announcem__realt__4BAC3F29">
           <End Type="RentGavrilinModel.Realtor" Role="Realtor" Multiplicity="0..1" />
           <End Type="RentGavrilinModel.Announcement" Role="Announcement" Multiplicity="*" />
@@ -345,15 +333,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Announcement_Characteristis_Announcement">
-          <End Type="RentGavrilinModel.Announcement" Role="Announcement" Multiplicity="0..1" />
-          <End Type="RentGavrilinModel.Announcement_Characteristis" Role="Announcement_Characteristis" Multiplicity="*" />
+        <Association Name="FK_Announcement_Characteristics">
+          <End Type="RentGavrilinModel.Characteristics" Role="Characteristics" Multiplicity="0..1" />
+          <End Type="RentGavrilinModel.Announcement" Role="Announcement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Announcement">
-              <PropertyRef Name="announcement_id" />
+            <Principal Role="Characteristics">
+              <PropertyRef Name="characteristic_id" />
             </Principal>
-            <Dependent Role="Announcement_Characteristis">
-              <PropertyRef Name="announcement_id" />
+            <Dependent Role="Announcement">
+              <PropertyRef Name="characteristic_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -381,71 +369,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Announcement_Characteristis_Characteristics">
-          <End Type="RentGavrilinModel.Characteristics" Role="Characteristics" Multiplicity="0..1" />
-          <End Type="RentGavrilinModel.Announcement_Characteristis" Role="Announcement_Characteristis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Characteristics">
-              <PropertyRef Name="characteristic_id" />
-            </Principal>
-            <Dependent Role="Announcement_Characteristis">
-              <PropertyRef Name="characteristic_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Location">
-          <End Type="RentGavrilinModel.Location" Role="Location" Multiplicity="0..1" />
-          <End Type="RentGavrilinModel.Users" Role="Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="location" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Responses_Users">
-          <End Type="RentGavrilinModel.Users" Role="Users" Multiplicity="0..1" />
-          <End Type="RentGavrilinModel.Responses" Role="Responses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="Responses">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище RentGavrilinModelContainer" CdmEntityContainer="RentGavrilinEntities">
-          <EntitySetMapping Name="Announcement">
-            <EntityTypeMapping TypeName="RentGavrilinModel.Announcement">
-              <MappingFragment StoreEntitySet="Announcement">
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="realtor_id" ColumnName="realtor_id" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="characteristic_id" ColumnName="characteristic_id" />
-                <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="photo" ColumnName="photo" />
-                <ScalarProperty Name="announcement_id" ColumnName="announcement_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Announcement_Characteristis">
-            <EntityTypeMapping TypeName="RentGavrilinModel.Announcement_Characteristis">
-              <MappingFragment StoreEntitySet="Announcement_Characteristis">
-                <ScalarProperty Name="characteristic_id" ColumnName="characteristic_id" />
-                <ScalarProperty Name="announcement_id" ColumnName="announcement_id" />
-                <ScalarProperty Name="announcement_characteristis_id" ColumnName="announcement_characteristis_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Characteristics">
             <EntityTypeMapping TypeName="RentGavrilinModel.Characteristics">
               <MappingFragment StoreEntitySet="Characteristics">
@@ -503,6 +432,22 @@
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Announcement">
+            <EntityTypeMapping TypeName="RentGavrilinModel.Announcement">
+              <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="parkovka" ColumnName="parkovka" />
+                <ScalarProperty Name="otoplinie" ColumnName="otoplinie" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="realtor_id" ColumnName="realtor_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="characteristic_id" ColumnName="characteristic_id" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="announcement_id" ColumnName="announcement_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

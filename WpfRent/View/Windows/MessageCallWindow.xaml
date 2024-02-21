@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfRent.View.Windows"
         mc:Ignorable="d"
-        Title="MessageCallWindow" SizeToContent="WidthAndHeight">
+        Title="MessageCallWindow" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Background="Transparent">
         <StackPanel Orientation="Vertical">
         <TextBox Name="NumberPhone" Height="27"/>
