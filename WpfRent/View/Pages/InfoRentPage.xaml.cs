@@ -16,6 +16,7 @@ namespace WpfRent.View.Pages
     public partial class InfoRentPage : Page
     {
         public Announcement selectedAnnouncement;
+
         public InfoRentPage(Announcement announcement)
         {
             InitializeComponent();
@@ -55,8 +56,18 @@ namespace WpfRent.View.Pages
                 }
             }
 
-            StringBuilder characteristicsBuilder = new StringBuilder();
+            // Получаем информацию о типе дома, отоплении и парковке
+            string houseType = App.context.Characteristics.FirstOrDefault(c => c.characteristic_id == selectedAnnouncement.characteristic_id)?.name;
+            bool heating = selectedAnnouncement.otoplinie ?? false;
+            bool parking = selectedAnnouncement.parkovka ?? false;
 
+            // Формируем строку характеристик
+            StringBuilder characteristicsBuilder = new StringBuilder();
+            characteristicsBuilder.AppendLine($"Тип дома: {houseType}");
+            characteristicsBuilder.AppendLine($"Отопление: {(heating ? "Да" : "Нет")}");
+            characteristicsBuilder.AppendLine($"Парковка: {(parking ? "Да" : "Нет")}");
+
+            // Устанавливаем характеристики в текстовое поле
             CharacteristicsTb.Text = characteristicsBuilder.ToString();
 
             NameTb.Text = $" Название: {selectedAnnouncement.title}";
@@ -76,9 +87,7 @@ namespace WpfRent.View.Pages
                 if (realtorIdNullable.HasValue)
                 {
                     int realtorId = realtorIdNullable.Value;
-
                     var realtor = context.Realtor.FirstOrDefault(r => r.realtor_id == realtorId);
-
                     return realtor?.phone;
                 }
                 else
@@ -94,7 +103,6 @@ namespace WpfRent.View.Pages
             {
                 int announcementId = selectedAnnouncement.announcement_id;
                 string realtorPhoneNumber = GetPhoneNumberFromDatabase(announcementId);
-
                 MessageCallWindow messageWindow = new MessageCallWindow(realtorPhoneNumber);
                 messageWindow.ShowDialog();
             }
