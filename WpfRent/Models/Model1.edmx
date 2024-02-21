@@ -73,6 +73,7 @@
           <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="location" Type="int" />
+          <Property Name="image" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__Announcem__realt__4BAC3F29">
           <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
@@ -277,6 +278,7 @@
           <Property Name="location" Type="Int32" />
           <NavigationProperty Name="Location1" Relationship="RentGavrilinModel.FK_Users_Location" FromRole="Users" ToRole="Location" />
           <NavigationProperty Name="Responses" Relationship="RentGavrilinModel.FK_Responses_Users" FromRole="Users" ToRole="Responses" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Users_Location">
           <End Type="RentGavrilinModel.Location" Role="Location" Multiplicity="0..1" />
@@ -425,6 +427,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="RentGavrilinModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />

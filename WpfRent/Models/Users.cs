@@ -26,6 +26,7 @@ namespace WpfRent.Models
         public string email { get; set; }
         public string password { get; set; }
         public Nullable<int> location { get; set; }
+        public string image { get; set; }
     
         public virtual Location Location1 { get; set; }
         public virtual ICollection<Responses> Responses { get; set; }

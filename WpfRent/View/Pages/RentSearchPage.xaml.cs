@@ -17,8 +17,7 @@ namespace WpfRent.View.Pages
             InitializeComponent();
             LoadData();
 
-            // Вы можете удалить это, так как мы не будем использовать приватное поле контекста данных
-            // basketLb.ItemsSource = App.context.Announcement.ToList();
+            ;
             GeolocationTb.Text = $"Ваше местоположение: {enteredUser.Location1.name}!";
         }
 
@@ -31,6 +30,7 @@ namespace WpfRent.View.Pages
                 basketLb.ItemsSource = announcements;
             }
         }
+
 
         public void ApplyFilter(decimal maxPrice, string location, string houseType)
         {
@@ -49,7 +49,6 @@ namespace WpfRent.View.Pages
 
                 var filteredList = filteredData.ToList();
 
-                // Добавьте этот вывод в консоль, чтобы убедиться, что Location1 заполняется корректно
                 foreach (var announcement in filteredList)
                 {
                     Console.WriteLine($"Location: {announcement.Location1?.name}, Title: {announcement.title}, Price: {announcement.price}");
@@ -64,18 +63,19 @@ namespace WpfRent.View.Pages
 
 
 
+
+
         private void basketLb_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (basketLb.SelectedItem != null)
             {
-                // Получаем выбранный элемент
+            
                 Announcement selectedVacancy = (Announcement)basketLb.SelectedItem;
 
 
 
                 InfoRentPage extendedWindow = new InfoRentPage(selectedVacancy);
 
-                // Открываем новое окно
                 NavigationService.Navigate(extendedWindow);
             }
         }

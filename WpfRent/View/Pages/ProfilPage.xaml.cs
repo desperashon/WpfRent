@@ -27,10 +27,10 @@ namespace WpfRent.View.Pages
 
             var user = App.context.Users.FirstOrDefault(u => u.user_id == App.enteredUser.user_id);
 
-            // Проверяем, что пользователь не равен null
+         
             if (user != null)
             {
-                // Присваиваем значения текстовым полям, если они не равны null
+                
                 LastnameTb.Text = user.last_name ?? "";
                 FirstNameTB.Text = user.first_name ?? "";
                 PatronymicTb.Text = user.middle_name ?? "";
@@ -38,6 +38,15 @@ namespace WpfRent.View.Pages
                 PasswordPb.Password = user.password ?? "";
                 LocationTb.Text = user.Location1.name ?? "";
 
+                if (!string.IsNullOrEmpty(user.image))
+                {
+                    
+                    var uri = new Uri(user.image, UriKind.RelativeOrAbsolute);
+
+                    
+                    var bitmap = new BitmapImage(uri);
+                    Image.Source = bitmap;
+                }
 
 
 
@@ -48,10 +57,10 @@ namespace WpfRent.View.Pages
         {
             try
             {
-                // Получаем экземпляр пользователя из контекста данных
+               
                 var userToUpdate = App.context.Users.FirstOrDefault(u => u.user_id == App.enteredUser.user_id);
 
-                // Обновляем данные пользователя
+               
                 if (userToUpdate != null)
                 {
                     userToUpdate.last_name = LastnameTb.Text;
@@ -60,7 +69,7 @@ namespace WpfRent.View.Pages
                     userToUpdate.email = EmailTb.Text;
                     userToUpdate.password = PasswordPb.Password;
                     userToUpdate.Location1.name = LocationTb.Text;
-                    // Сохраняем изменения в базе данных
+                   
                     App.context.SaveChanges();
 
                     MessageBox.Show("Изменения успешно сохранены.");

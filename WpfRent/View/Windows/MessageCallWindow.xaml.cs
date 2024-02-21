@@ -29,7 +29,6 @@ namespace WpfRent.View.Windows
             NumberPhone.Text = RealtorPhoneNumber;
         }
 
-        // Обработчик нажатия кнопки "Копировать номер"
         private void CopyNumber_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(RealtorPhoneNumber))

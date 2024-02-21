@@ -21,30 +21,38 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Image Stretch="Fill" Source="/Resources/back.jpg" Grid.RowSpan="9" Margin="0,0,0,115" />
+        <Image Stretch="Fill" Name="Image" Source="/Resources/back.jpg" Grid.RowSpan="9" Margin="0,0,0,115" />
 
-        <Image Height="200" Grid.Row="1"/>
+        <Image Height="200" Grid.Row="1" Margin="76,0,62,0"/>
+
         <TextBlock Text="Фамилия:" Margin="10" Grid.Row="2"/>
-        <TextBox Name="LastnameTb"  Margin="100,0,10,0" Grid.Row="2"/>
+        <TextBox Name="LastnameTb" Margin="100,0,10,0" Grid.Row="2" FontSize="16"/>
 
+       
         <TextBlock Text="Имя:" Margin="10" Grid.Row="3"/>
-        <TextBox Name="FirstNameTB"  Margin="100,0,10,0" Grid.Row="3"/>
+        <TextBox Name="FirstNameTB" Margin="100,0,10,0" Grid.Row="3" FontSize="16"/>
 
+      
         <TextBlock Text="Отчество:" Margin="10" Grid.Row="4"/>
-        <TextBox Name="PatronymicTb" Margin="100,0,10,0" Grid.Row="4"/>
+        <TextBox Name="PatronymicTb" Margin="100,0,10,0" Grid.Row="4" FontSize="16"/>
 
+        
         <TextBlock Text="Почта:" Margin="10" Grid.Row="5"/>
-        <TextBox x:Name="EmailTb" Margin="100,0,10,0" Grid.Row="5"/>
+        <TextBox x:Name="EmailTb" Margin="100,0,10,0" Grid.Row="5" FontSize="16"/>
 
+      
         <TextBlock Text="Пароль:" Margin="10" Grid.Row="6"/>
-        <PasswordBox Name="PasswordPb" Margin="0,10,0,10" Grid.Row="6" Grid.Column="1" Width="160"/>
+        <PasswordBox Name="PasswordPb" Margin="0,10,0,10" Grid.Row="6" Grid.Column="1" Width="160" FontSize="16"/>
 
+      
         <TextBlock Text="Локация:" Margin="10" Grid.Row="7"/>
-        <TextBox x:Name="LocationTb" Margin="100,0,10,0" Grid.Row="7"/>
+        <TextBox x:Name="LocationTb" Margin="100,0,10,0" Grid.Row="7" FontSize="16"/>
+
+        
         <Button Content="Сохранить изменения" Margin="10" Grid.Row="9" Click="Button_Click"/>
 
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35,0,0"
-         Width="74" Height="30" Click="Button_Click_1"  BorderThickness="0">
+      
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35,0,0" Width="74" Height="30" Click="Button_Click_1"  BorderThickness="0">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Grid Background="Transparent" Margin="0,0,89,0">

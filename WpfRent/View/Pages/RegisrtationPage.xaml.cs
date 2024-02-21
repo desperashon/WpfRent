@@ -35,7 +35,7 @@ namespace WpfRent.View.Pages
         {
             string mes = "";
 
-            // Проверка имени
+          
             if (string.IsNullOrWhiteSpace(NameTb.Text))
             {
                 mes += "Введите имя\n";
@@ -45,7 +45,7 @@ namespace WpfRent.View.Pages
                 mes += "Имя должно содержать только буквы русского алфавита\n";
             }
 
-            // Проверка email
+        
             if (string.IsNullOrWhiteSpace(LoginTb.Text))
             {
                 mes += "Введите почту \n";
@@ -55,7 +55,7 @@ namespace WpfRent.View.Pages
                 mes += "Введите корректный email\n";
             }
 
-            // Проверка пароля
+            
             if (string.IsNullOrWhiteSpace(PasswordPb.Password))
             {
                 mes += "Введите пароль\n";
@@ -71,7 +71,7 @@ namespace WpfRent.View.Pages
                 return;
             }
 
-            // Создание нового пользователя
+       
             Users user = new Users()
             {
                 email = LoginTb.Text,
@@ -80,7 +80,7 @@ namespace WpfRent.View.Pages
                 last_name = FirstnNameTb.Text,
             };
 
-            // Добавление пользователя в контекст и сохранение изменений
+         
             App.context.Users.Add(user);
             App.enteredUser = user;
             App.context.SaveChanges();
@@ -89,7 +89,7 @@ namespace WpfRent.View.Pages
             NavigationService.Navigate(new RentSearchPage(user));
         }
 
-        // Проверка корректности email с использованием регулярного выражения
+      
         private bool IsValidEmail(string email)
         {
             try
