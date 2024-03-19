@@ -26,27 +26,27 @@
         <Image Height="200" Grid.Row="1" Margin="76,0,62,0"/>
 
         <TextBlock Text="Фамилия:" Margin="10" Grid.Row="2"/>
-        <TextBox Name="LastnameTb" Margin="100,0,10,0" Grid.Row="2" FontSize="16"/>
+        <TextBox Name="LastnameTb" Margin="90,10,25,10" Height="35" Grid.Row="2" FontSize="16"/>
 
        
         <TextBlock Text="Имя:" Margin="10" Grid.Row="3"/>
-        <TextBox Name="FirstNameTB" Margin="100,0,10,0" Grid.Row="3" FontSize="16"/>
+        <TextBox Name="FirstNameTB" Margin="90,10,25,10"  Height="35" Grid.Row="3" FontSize="16"/>
 
       
         <TextBlock Text="Отчество:" Margin="10" Grid.Row="4"/>
-        <TextBox Name="PatronymicTb" Margin="100,0,10,0" Grid.Row="4" FontSize="16"/>
+        <TextBox Name="PatronymicTb" Margin="90,10,25,10" Height="35" Grid.Row="4" FontSize="16"/>
 
         
         <TextBlock Text="Почта:" Margin="10" Grid.Row="5"/>
-        <TextBox x:Name="EmailTb" Margin="100,0,10,0" Grid.Row="5" FontSize="16"/>
+        <TextBox x:Name="EmailTb" Margin="90,10,25,10" Height="35" Grid.Row="5" FontSize="16"/>
 
       
         <TextBlock Text="Пароль:" Margin="10" Grid.Row="6"/>
-        <PasswordBox Name="PasswordPb" Margin="0,10,0,10" Grid.Row="6" Grid.Column="1" Width="160" FontSize="16"/>
+        <PasswordBox Name="PasswordPb"  Grid.Row="6" Grid.Column="1" Margin="90,10,25,10" Height="35" FontSize="16"/>
 
       
         <TextBlock Text="Локация:" Margin="10" Grid.Row="7"/>
-        <TextBox x:Name="LocationTb" Margin="100,0,10,0" Grid.Row="7" FontSize="16"/>
+        <TextBox x:Name="LocationTb" Margin="90,10,25,10" Height="35" Grid.Row="7" FontSize="16"/>
 
         
         <Button Content="Сохранить изменения" Margin="10" Grid.Row="9" Click="Button_Click"/>

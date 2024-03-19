@@ -46,7 +46,7 @@
             <Setter Property="Foreground" Value="#CCCCCC" />
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Background" Value="#1E1E3C" />
+            <Setter Property="Background" Value="White" />
             <Setter Property="BorderBrush" Value="#4B4B96" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="Height" Value="30" />
