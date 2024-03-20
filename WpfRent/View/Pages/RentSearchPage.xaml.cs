@@ -12,12 +12,15 @@ namespace WpfRent.View.Pages
 {
     public partial class RentSearchPage : Page
     {
+        private readonly RentGavrilinEntities _context;
+        private List<Announcement> _filteredAnnouncements;
         public RentSearchPage(Users enteredUser)
         {
             InitializeComponent();
             LoadData();
+            _context = new RentGavrilinEntities();
+            LoadAnnouncements();
 
-            ;
             GeolocationTb.Text = $"Ваше местоположение: {enteredUser.Location1.name}!";
         }
 
@@ -31,33 +34,34 @@ namespace WpfRent.View.Pages
             }
         }
 
-
-        public void ApplyFilter(decimal maxPrice, string location, string houseType)
+        private void LoadAnnouncements()
         {
-            using (var context = new RentGavrilinEntities())
-            {
-                IQueryable<Announcement> filteredData = context.Announcement;
-
-                if (maxPrice > 0)
-                    filteredData = filteredData.Where(a => a.price <= maxPrice);
-
-                if (!string.IsNullOrEmpty(location))
-                    filteredData = filteredData.Where(a => a.Location1.name == location);
-
-                if (!string.IsNullOrEmpty(houseType))
-                    filteredData = filteredData.Where(a => a.Characteristics.name == houseType);
-
-                var filteredList = filteredData.ToList();
-
-                foreach (var announcement in filteredList)
-                {
-                    Console.WriteLine($"Location: {announcement.Location1?.name}, Title: {announcement.title}, Price: {announcement.price}");
-                }
-
-                basketLb.ItemsSource = filteredList;
-            }
+            _filteredAnnouncements = _context.Announcement.ToList();
+            basketLb.ItemsSource = _filteredAnnouncements;
         }
 
+        public void ApplyFilter(decimal maxPrice, string selectedLocation, string selectedHouseType)
+        {
+            _filteredAnnouncements = _context.Announcement.ToList();
+
+            if (maxPrice > 0)
+                _filteredAnnouncements = _filteredAnnouncements.Where(a => a.price <= maxPrice).ToList();
+
+            if (!string.IsNullOrWhiteSpace(selectedLocation))
+                _filteredAnnouncements = _filteredAnnouncements.Where(a => a.Location1.name == selectedLocation).ToList();
+
+            if (!string.IsNullOrWhiteSpace(selectedHouseType))
+                _filteredAnnouncements = _filteredAnnouncements.Where(a => a.Characteristics.name == selectedHouseType).ToList();
+
+            basketLb.ItemsSource = _filteredAnnouncements;
+        }
+
+
+        public void Refresh()
+        {
+            LoadAnnouncements();
+        }
+        
 
 
 

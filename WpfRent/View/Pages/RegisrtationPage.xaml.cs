@@ -1,61 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRent.Models;
 
 namespace WpfRent.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для RegisrtationPage.xaml
+    /// Логика взаимодействия для RegistrationPage.xaml
     /// </summary>
-    public partial class RegisrtationPage : Page
+    public partial class RegistrationPage : Page
     {
-
-
-        public RegisrtationPage()
+        public RegistrationPage()
         {
             InitializeComponent();
+            LocationCmb.DisplayMemberPath = "name";
+            LocationCmb.SelectedValuePath = "id";
+            LocationCmb.ItemsSource = App.context.Location.ToList();
         }
 
-        public static Announcement filtrAnnouncement;
-
-        private void RegistretionBtn_Click(object sender, RoutedEventArgs e)
+        private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
             string mes = "";
 
-          
-            if (string.IsNullOrWhiteSpace(NameTb.Text))
+            if (string.IsNullOrWhiteSpace(FirstNameTb.Text))
             {
                 mes += "Введите имя\n";
             }
-            else if (!Regex.IsMatch(NameTb.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            else if (!Regex.IsMatch(FirstNameTb.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
                 mes += "Имя должно содержать только буквы русского алфавита\n";
             }
 
-        
-            if (string.IsNullOrWhiteSpace(LoginTb.Text))
+            if (string.IsNullOrWhiteSpace(LastNameTb.Text))
             {
-                mes += "Введите почту \n";
+                mes += "Введите фамилию\n";
             }
-            else if (!IsValidEmail(LoginTb.Text))
+            else if (!Regex.IsMatch(LastNameTb.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                mes += "Фамилия должна содержать только буквы русского алфавита\n";
+            }
+
+            if (string.IsNullOrWhiteSpace(EmailTb.Text))
+            {
+                mes += "Введите почту\n";
+            }
+            else if (!IsValidEmail(EmailTb.Text))
             {
                 mes += "Введите корректный email\n";
             }
 
-            
             if (string.IsNullOrWhiteSpace(PasswordPb.Password))
             {
                 mes += "Введите пароль\n";
@@ -71,25 +66,23 @@ namespace WpfRent.View.Pages
                 return;
             }
 
-       
             Users user = new Users()
             {
-                email = LoginTb.Text,
-                first_name = NameTb.Text,
+                email = EmailTb.Text,
+                first_name = FirstNameTb.Text,
                 password = PasswordPb.Password,
-                last_name = FirstnNameTb.Text,
+                last_name = LastNameTb.Text,
+                Location1 = LocationCmb.ItemsSource as Location,
             };
 
-         
             App.context.Users.Add(user);
             App.enteredUser = user;
             App.context.SaveChanges();
-            
+
             MessageBox.Show("Успешная регистрация!");
             NavigationService.Navigate(new RentSearchPage(user));
         }
 
-      
         private bool IsValidEmail(string email)
         {
             try
@@ -102,7 +95,6 @@ namespace WpfRent.View.Pages
                 return false;
             }
         }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

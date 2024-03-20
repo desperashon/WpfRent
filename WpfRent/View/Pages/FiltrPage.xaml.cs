@@ -43,7 +43,7 @@ namespace WpfRent.View.Pages
             if (_previousPage is RentSearchPage rentSearchPage)
             {
                 rentSearchPage.ApplyFilter(maxPrice, selectedLocation, selectedHouseType);
-                NavigationService.Navigate(rentSearchPage);
+                NavigationService?.GoBack(); 
             }
             else
             {

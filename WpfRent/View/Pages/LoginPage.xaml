@@ -54,9 +54,9 @@
 
         <Button Name="RegistretionBtn"
               Click="RegistretionBtn_Click"
-              Grid.Row="10"
+              Grid.Row="8"
               Content="Зарегистрироваться"
-              Margin="20,40,20,39"/>
+              Margin="20,116,20,111" Grid.RowSpan="3"/>
 
         <TextBox Name="LoginTb"
                Grid.Row="4"

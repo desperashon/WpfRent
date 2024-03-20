@@ -1,55 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRent.Models;
 
 namespace WpfRent.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ProfilPage.xaml
+    /// Interaction logic for ProfilPage.xaml
     /// </summary>
     public partial class ProfilPage : Page
     {
         public ProfilPage()
         {
             InitializeComponent();
+            LocationTb.DisplayMemberPath = "name";
+            LocationTb.SelectedValuePath = "id";
+            LocationTb.ItemsSource = App.context.Location.ToList();
 
             var user = App.context.Users.FirstOrDefault(u => u.user_id == App.enteredUser.user_id);
 
-         
             if (user != null)
             {
-                
                 LastnameTb.Text = user.last_name ?? "";
                 FirstNameTB.Text = user.first_name ?? "";
                 PatronymicTb.Text = user.middle_name ?? "";
                 EmailTb.Text = user.email ?? "";
                 PasswordPb.Password = user.password ?? "";
-                LocationTb.Text = user.Location1.name ?? "";
 
-                if (!string.IsNullOrEmpty(user.image))
-                {
-                    
-                    var uri = new Uri(user.image, UriKind.RelativeOrAbsolute);
-
-                    
-                    var bitmap = new BitmapImage(uri);
-                    Image.Source = bitmap;
-                }
-
-
-
+               
+              
+                LocationTb.SelectedItem = user.Location1?.name ?? "";
             }
         }
 
@@ -57,10 +38,8 @@ namespace WpfRent.View.Pages
         {
             try
             {
-               
                 var userToUpdate = App.context.Users.FirstOrDefault(u => u.user_id == App.enteredUser.user_id);
 
-               
                 if (userToUpdate != null)
                 {
                     userToUpdate.last_name = LastnameTb.Text;
@@ -68,8 +47,12 @@ namespace WpfRent.View.Pages
                     userToUpdate.middle_name = PatronymicTb.Text;
                     userToUpdate.email = EmailTb.Text;
                     userToUpdate.password = PasswordPb.Password;
-                    userToUpdate.Location1.name = LocationTb.Text;
-                   
+
+                 
+                    var selectedLocationName = LocationTb.SelectedItem?.ToString() ?? "";
+                    var location = App.context.Location.FirstOrDefault(l => l.name == selectedLocationName);
+                    userToUpdate.Location1 = location;
+
                     App.context.SaveChanges();
 
                     MessageBox.Show("Изменения успешно сохранены.");

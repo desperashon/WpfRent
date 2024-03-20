@@ -49,7 +49,7 @@ namespace WpfRent.View.Pages
 
         private void RegistretionBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RegisrtationPage());
+            NavigationService.Navigate(new RegistrationPage());
         }
     }
 }
