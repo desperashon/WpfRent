@@ -5,36 +5,32 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfRent.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="765" d:DesignWidth="340"
+      d:DesignHeight="450" d:DesignWidth="340"
       Title="ProfilPage">
 
-    <Grid>
-        <Image Stretch="Fill" Name="Image" Source="/Resources/back.jpg" Margin="0,0,0,115" />
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Name="Image" Source="/Resources/back.jpg" Margin="0,0,0,20" />
 
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,35,0,0" Width="145" Height="63" Click="Button_Click_1"  BorderThickness="0">
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Width="80" Height="40" Click="Button_Click_1" BorderThickness="0">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Grid Background="Transparent" Margin="0,0,89,0">
+                    <Grid Background="Transparent">
                         <Ellipse Fill="#1E1E6C"/>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </ControlTemplate>
             </Button.Template>
-            <Image Source="\Resources\icons8-назад-50.png" Width="20" Height="20"/>
+            <Image Source="/Resources/icons8-назад-50.png" Width="20" Height="20"/>
         </Button>
-       
+
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Image Height="100" Margin="0,10,0,10" HorizontalAlignment="Center" Source="/Resources/profile_picture_placeholder.png"/>
 
-       
-            <Image Height="154" Margin="0,10,0,10" HorizontalAlignment="Center" Width="135"/>
-
-         
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Width="100" Text="Фамилия:" Margin="10"/>
                 <TextBox Name="LastnameTb" Margin="10" Height="35" Width="200" FontSize="16"/>
             </StackPanel>
 
-            
             <StackPanel  Orientation="Horizontal" Margin="0,10">
                 <TextBlock Width="100" Text="Имя:" Margin="10"/>
                 <TextBox Name="FirstNameTB" Margin="10" Height="35" Width="200" FontSize="16"/>
@@ -45,13 +41,11 @@
                 <TextBox Name="PatronymicTb" Margin="10" Height="35" Width="200" FontSize="16"/>
             </StackPanel>
 
-           
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Width="100" Text="Почта:" Margin="10"/>
                 <TextBox x:Name="EmailTb" Margin="10" Height="35" Width="200" FontSize="16"/>
             </StackPanel>
 
-          
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Width="100" Text="Пароль:" Margin="10"/>
                 <PasswordBox Name="PasswordPb" Margin="10" Height="35" Width="200" FontSize="16"/>
@@ -62,11 +56,7 @@
                 <ComboBox x:Name="LocationTb" Margin="10" Height="35" Width="200" FontSize="16"/>
             </StackPanel>
 
-           
-            <StackPanel Orientation="Horizontal" Margin="0,20">
-                <Button Click="Button_Click" Content="Сохранить изменения" Margin="10" Height="35" Width="200" FontSize="16"/>
-
-            </StackPanel>
+            <Button Click="Button_Click" Content="Сохранить изменения" Margin="0,20" Height="40" Width="200" FontSize="16"/>
         </StackPanel>
     </Grid>
 </Page>

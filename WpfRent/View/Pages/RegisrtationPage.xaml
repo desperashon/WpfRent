@@ -5,71 +5,54 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WpfRent.View.Pages"
       mc:Ignorable="d"
-      d:DesignHeight="765" d:DesignWidth="340"
+      d:DesignHeight="450" d:DesignWidth="340"
       Title="RegistrationPage">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Padding="20" Margin="0,0,0,-64">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Регистрация" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="0,10" />
 
-        </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,20">
+                    <TextBlock Text="Имя:" FontWeight="Bold" Width="100" VerticalAlignment="Center" />
+                    <TextBox Name="FirstNameTb" Width="200" Height="30" VerticalAlignment="Center" />
+                </StackPanel>
 
-        <Image Stretch="Fill" Source="/Resources/back.jpg" Margin="0,0,0,28" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Фамилия:" FontWeight="Bold" Width="100" VerticalAlignment="Center" />
+                    <TextBox Name="LastNameTb" Width="200" Height="30" VerticalAlignment="Center" />
+                </StackPanel>
 
-        <TextBlock Grid.Column="1" Text="Регистрация" FontWeight="ExtraBold" FontSize="30" HorizontalAlignment="Center" Margin="0,10" />
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Email:" FontWeight="Bold" Width="100" VerticalAlignment="Center" />
+                    <TextBox Name="EmailTb" Width="200" Height="30" VerticalAlignment="Center" />
+                </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="10 5">
-            <TextBlock Width="100" Text="Имя:" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center" />
-            <TextBox Name="FirstNameTb" Width="200" Height="30" VerticalAlignment="Center" />
-        </StackPanel>
+                <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Пароль:" FontWeight="Bold" Width="100" VerticalAlignment="Center" />
+                    <PasswordBox Name="PasswordPb" Width="200" Height="30" VerticalAlignment="Center" />
+                </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="10 5">
-            <TextBlock Width="100" Text="Фамилия:" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center" />
-            <TextBox Name="LastNameTb" Width="200" Height="30" VerticalAlignment="Center" />
-        </StackPanel>
+                <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,20">
+                    <TextBlock Text="Локация:" FontWeight="Bold" Width="100" VerticalAlignment="Center" />
+                    <ComboBox Name="LocationCmb" Width="200" Height="30" VerticalAlignment="Center" />
+                </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" Margin="10 5">
-            <TextBlock Width="100" Text="Email:" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center" />
-            <TextBox Name="EmailTb" Width="200" Height="30" VerticalAlignment="Center" />
-        </StackPanel>
+                <Button Grid.Row="6" Content="Зарегистрироваться" Width="178" Height="40" HorizontalAlignment="Center" Margin="0,20,0,20" Click="RegistrationBtn_Click" />
 
-        <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="10 5">
-            <TextBlock Width="100" Text="Пароль:" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center" />
-            <PasswordBox Name="PasswordPb" Width="200" Height="30" VerticalAlignment="Center" />
-        </StackPanel>
-
-        <StackPanel Grid.Row="11" Grid.Column="1" Orientation="Horizontal" Margin="10 5">
-            <TextBlock Width="100" Text="Локация:" FontWeight="Bold" Margin="0 0 10 0" VerticalAlignment="Center" />
-            <ComboBox Name="LocationCmb" Width="200" Height="30" VerticalAlignment="Center" />
-        </StackPanel>
-
-        <Button Name="RegistrationBtn" Grid.Row="13" Grid.Column="1" Content="Зарегистрироваться" Margin="10" Click="RegistrationBtn_Click" HorizontalAlignment="Center" />
-
-        <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"   Click="Button_Click" Margin="10,24,0,0" Width="43">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid Background="Transparent">
-                        <Ellipse Fill="#1E1E6C"/>
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Button.Template>
-            <Image Source="\Resources\icons8-назад-50.png" Width="20" Height="20"/>
-        </Button>
+                <Button Grid.Row="7" Content="Назад" Width="83" Height="26" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" />
+            </Grid>
+        </Border>
     </Grid>
 </Page>

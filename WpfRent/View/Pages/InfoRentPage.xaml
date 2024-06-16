@@ -37,7 +37,7 @@
 
         <Image Grid.Row="1"
                Name="ImageIm"
-               Stretch="Fill"
+               Stretch="Uniform"
                />
 
         <TextBlock Name="NameTb"

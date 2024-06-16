@@ -5,21 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfRent"
         mc:Ignorable="d"
-        Title="MainWindow" WindowStartupLocation="CenterScreen"  WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize"  Height="800" Width="360">
+        Title="MainWindow" 
+        WindowStartupLocation="CenterScreen"  
+        WindowStyle="None" 
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        ResizeMode="CanResizeWithGrip"  
+        MinWidth="800" MinHeight="600">
 
     <Grid>
-        <Border CornerRadius="10">
+        <Border CornerRadius="10" BorderThickness="1" BorderBrush="Black">
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="Black" Offset="0.0"/>
                     <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
+            <Grid>
+                <Frame x:Name="MainFrm"
+                       NavigationUIVisibility="Hidden"  
+                       Margin="10"/>
+            </Grid>
         </Border>
-        <Grid>
-        <Frame x:Name="MainFrm"
-        Grid.Row="0"
-        NavigationUIVisibility="Hidden"  />
-    </Grid>
     </Grid>
 </Window>

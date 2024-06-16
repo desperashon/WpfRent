@@ -5,53 +5,57 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfRent.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="765" d:DesignWidth="340"
+      d:DesignHeight="800" d:DesignWidth="1200"
       Title="RentSearchPage">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70" />
-            <RowDefinition Height="80" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Image Stretch="Fill" Source="/Resources/back.jpg" Grid.RowSpan="9" Margin="0,0,0,115" />
+
+        <Image Stretch="Fill" Source="/Resources/back.jpg" Grid.RowSpan="4" />
 
         <TextBlock Name="GeolocationTb" 
-                   Grid.Row="1" Margin="15,30,100,0" FontSize="16" Height="48"/>
+                   Grid.Row="0" Margin="20" FontSize="20"/>
 
-        <Button  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="272,0,0,0"
-         Width="153" Height="48" Click="Button_Click"  BorderThickness="0">
+        <Button  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"
+         Width="100" Height="40" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate  TargetType="Button">
-                    <Grid Background="Transparent" Margin="0,0,89,0">
+                    <Grid Background="Transparent">
                         <Ellipse Fill="Transparent"/>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </ControlTemplate>
             </Button.Template>
-            <Image Source="\Resources\unsplash_jmURdhtm7Ngprofil.png" Width="46" Height="38"/>
+            <Image Source="\Resources\unsplash_jmURdhtm7Ngprofil.png" Width="40" Height="40"/>
         </Button>
-        <StackPanel Grid.Row="2" Margin="10,0,10,0" Orientation="Horizontal">
-            <Label Content="Поиск:"/>
+
+        <StackPanel Grid.Row="1" Margin="20" Orientation="Horizontal">
+            <Label Content="Поиск:" FontSize="20"/>
             <TextBox TextChanged="SearchTb_TextChanged" 
-                        Name="SearchTb" Width="220" Height="25"/>
-            <Button Name="FiltrBtn" Width="86" Height="29" Click="FiltrBtn_Click" BorderThickness="0">
+                        Name="SearchTb" Width="300" Height="30" FontSize="20"/>
+            <Button Name="FiltrBtn" Width="100" Height="40" Click="FiltrBtn_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Background="Transparent" Margin="0,0,89,0">
+                        <Grid Background="Transparent">
                             <Ellipse Fill="Transparent"/>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </ControlTemplate>
                 </Button.Template>
-                <Image Source="\Resources\icons8-filter-50 1.png" Width="35" Height="29"/>
+                <Image Source="\Resources\icons8-filter-50 1.png" Width="35" Height="35"/>
             </Button>
         </StackPanel>
 
-        <ListBox HorizontalAlignment="Center" BorderThickness="0" Background="Transparent" Margin="18" Grid.RowSpan="3" MouseDoubleClick="basketLb_MouseDoubleClick"  Name="basketLb" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" Padding="0">
+        <ListBox Grid.Row="2" Margin="20" Name="basketLb" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 MouseDoubleClick="basketLb_MouseDoubleClick" 
+                 Background="Transparent">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Width="{Binding ElementName=basketLb, Path=ActualWidth}" />
@@ -59,26 +63,24 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border   Padding="5" BorderBrush="White" BorderThickness="2"  Height="200" Width="305" Margin="3">
+                    <Border Padding="10" BorderBrush="Black" BorderThickness="2"  Height="250" Width="400" Margin="10">
                         <StackPanel>
                             <Grid>
-
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <TextBlock Text="Расположение: " FontWeight="Medium"/>
-                                        <TextBlock Text="{Binding Location1.name, Mode=OneWay}" FontWeight="Medium"/>
+                                        <TextBlock Text="Расположение: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Location1.name, Mode=OneWay}" FontWeight="Bold"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <TextBlock Text="Название: " FontWeight="Medium"/>
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding title}" FontWeight="Medium"/>
+                                        <TextBlock Text="Название: " FontWeight="Bold"/>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding title}" FontWeight="Bold"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <TextBlock Text="Цена: " FontWeight="Medium"/>
-                                        <TextBlock Text="{Binding price}" FontWeight="Medium"/>
+                                        <TextBlock Text="Цена: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding price}" FontWeight="Bold"/>
                                     </StackPanel>
-                                    <Image Margin="10" Stretch="Fill" Grid.Row="0" Source="{Binding photo}"/>
+                                    <Image Margin="10" Stretch="Fill" Source="{Binding photo}"/>
                                 </StackPanel>
-
                             </Grid>
                         </StackPanel>
                     </Border>
